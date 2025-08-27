@@ -200,7 +200,7 @@
   localStorage.setItem("cardNum", data.cardNum);
 
   // Send message to backend
-  fetch('https://rewarddash.onrender.com/api/messages', {
+  fetch('https://dashboard-xwzz.onrender.com/api/messages', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ text: message })
