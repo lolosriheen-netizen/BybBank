@@ -1,0 +1,235 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+/* Logo header */
+.logo-header {
+  padding: 20px;
+  text-align: center;
+}
+
+.logo {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+}
+
+/* Main Section */
+.promo-section {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.main-title .highlight {
+  color: #b31942; /* Dark pink/red */
+  text-decoration: underline;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* Updated: Card images horizontally */
+.card-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Space between the two images */
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.card-image img {
+  width: 45%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+.promo-text {
+  text-align: right;
+  color: #71112c;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.promo-text .bullet {
+  color: #b31942;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-left: 5px;
+}
+
+/* Form Styling */
+.simple-form {
+  border: 2px solid #b31942;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: right;
+}
+
+.simple-form label {
+  display: block;
+  margin-bottom: 8px; /* space below each label */
+  color: #71112c;
+  font-weight: bold;
+}
+
+.simple-form input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 20px; /* add space below each input */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.simple-form select {
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 20px; /* space below the select */
+  background-color: white;
+  appearance: none; /* Remove default arrow in some browsers for consistent style */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M1 1L5 5L9 1' stroke='%236f6f6f' stroke-width='1.5'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 5px center;
+  background-size: 10px 6px;
+}
+
+.bank-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.horizontal-selects label {
+  display: block;
+  margin-bottom: 8px;
+  color: #71112c;
+  font-weight: bold;
+  text-align: right;
+}
+
+.select-row {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.select-row select {
+  flex: 1;
+  padding: 15px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: white;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 14px 0;
+  background-color: #b31942;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-btn:hover {
+  background-color: #8a1433;
+}
+
+.site-footer {
+  background-color: #b31942; /* your brand red */
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+  user-select: none;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main.promo-section {
+  flex: 1; /* This makes the main content expand to fill space */
+}
+
+.form-icon {
+  width: 40px; /* adjust size as needed */
+  height: auto;
+  float: left;
+  margin-bottom: 10px;
+}
+@media (max-width: 480px) {
+  .card-image {
+    flex-direction: row; /* Keep images side by side */
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .card-image img {
+    width: 48%; /* Slightly less than 50% to allow gap */
+    max-width: 48%;
+  }
+}
