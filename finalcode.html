@@ -6,119 +6,151 @@
   <title>رمز التحقق</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fff;
-      text-align: center;
-    }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg, #f4f2f7 0%, #ffffff 60%);
+  color: #2e2e2e;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
 
-    .container {
-      max-width: 480px;
-      margin: auto;
-      padding: 20px;
-      border: 2px solid #8a1433;
-      border-radius: 20px;
-      margin-top: 30px;
-    }
+/* OTP container */
+.container {
+  max-width: 480px;
+  margin: 30px auto;
+  padding: 22px;
+  border: 2px solid #5b2b82; /* promo color */
+  border-radius: 18px; /* same as promo form */
+  background-color: #ffffff;
+  box-shadow: 0 10px 25px rgba(91, 43, 130, 0.15);
+}
 
-    .logo {
-      width: 120px;
-      margin: 0 auto 10px;
-    }
+/* Logo */
+.logo {
+  width: 120px;
+  margin: 0 auto 15px auto;
+  display: block;
+}
 
-    .title-box {
-      margin-bottom: 20px;
-    }
+/* Title */
+.title-box p {
+  font-size: 1.1rem;
+  color: #4a1f6f; /* matches promo-text color */
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
 
-    .title-box p {
-      font-size: 1.1rem;
-      color: #333;
-      line-height: 1.8;
-    }
+/* Illustration */
+.illustration {
+  width: 140px;
+  margin: 15px auto;
+}
 
-    .illustration {
-      width: 140px;
-      margin: 15px auto;
-    }
+/* OTP label */
+.otp-label {
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 20px 0 10px;
+  color: #5b2b82; /* matches main promo color */
+}
 
-    .otp-label {
-      font-weight: bold;
-      font-size: 1rem;
-      margin: 20px 0 10px;
-      color: #8a1433;
-    }
+/* OTP input */
+.otp-input {
+  width: 90%;
+  max-width: 250px;
+  padding: 12px;
+  font-size: 1.3rem;
+  border: 2px solid #5b2b82; /* promo color */
+  border-radius: 12px;
+  text-align: center;
+  letter-spacing: 8px;
+  margin-bottom: 15px;
+  background-color: #ffffff;
+}
 
-    .otp-input {
-      width: 90%;
-      max-width: 250px;
-      padding: 12px;
-      font-size: 1.3rem;
-      border: 2px solid #8a1433;
-      border-radius: 8px;
-      text-align: center;
-      letter-spacing: 8px;
-      margin-bottom: 15px;
-    }
+.otp-input:focus {
+  outline: none;
+  border-color: #0a8f3d; /* green focus like confirm button */
+  box-shadow: 0 0 0 2px rgba(10, 143, 61, 0.15);
+}
 
-    .timer-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      margin-bottom: 20px;
-    }
+/* Timer */
+.timer {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #5b2b82; /* promo main color */
+}
 
-    .timer {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #8a1433;
-    }
+.expired-message {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #5b2b82;
+  font-weight: bold;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+}
 
-    .expired-message {
-      margin-top: 8px;
-      font-size: 0.95rem;
-      color: #8a1433;
-      font-weight: bold;
-    }
+/* New code button */
+#newCodeBtn {
+  background-color: #0a8f3d; /* same as confirm button */
+  border: none;
+  padding: 6px 14px;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
 
-    .submit-btn {
-      background-color: #8a1433;
-      color: white;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      width: 90%;
-      max-width: 300px;
-      cursor: pointer;
-    }
+#newCodeBtn:hover {
+  background-color: #087a34;
+}
 
-    .submit-btn:disabled {
-      background-color: #aaa;
-      cursor: not-allowed;
-    }
+/* Submit button */
+.submit-btn {
+  background-color: #0a8f3d; /* same as confirm button */
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 999px; /* same as confirm button */
+  font-size: 1.1rem;
+  width: 90%;
+  max-width: 300px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
 
-    .submit-btn:hover:not(:disabled) {
-      background-color: #6f102a;
-    }
+.submit-btn:hover:not(:disabled) {
+  background-color: #087a34;
+}
 
-    @media (max-width: 600px) {
-      .title-box p {
-        font-size: 1rem;
-      }
+.submit-btn:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
 
-      .timer {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .title-box p {
+    font-size: 1rem;
+  }
+  .timer {
+    font-size: 1.5rem;
+  }
+}
+</style>
+
 </head>
 <body>
 
   <div class="container">
-    <img src="images/logo.jpg" alt="Banque Misr" class="logo" />
+    <img src="images/bybLogo.png" alt="Banque Misr" class="logo" />
 
     <div class="title-box">
       <p>قم بإدخال الرمز المستلم على جوالك بواسطة رسالة نصية قصيرة واضغط على زر التحقق لتأكيد وتفعيل الطلب الخاص بك</p>
@@ -131,12 +163,12 @@
 
 
     <div class="timer-wrapper">
-      <div class="timer" id="otpTimer">15</div>
-     <div class="expired-message" id="expiredMsg" style="display: none; gap: 12px; flex-wrap: wrap; justify-content: center; align-items: center; display: none; flex-direction: row; margin-top: 8px; font-size: 0.95rem; color: #8a1433; font-weight: bold; cursor: default;">
+      <div class="timer" id="otpTimer">60</div>
+     <div class="expired-message" id="expiredMsg" style="display: none; gap: 12px; flex-wrap: wrap; justify-content: center; align-items: center; display: none; flex-direction: row; margin-top: 8px; font-size: 0.95rem; color: #5b2b82; font-weight: bold; cursor: default;">
   انتهى وقت الكود، يرجى طلب كود جديد.
   <button id="newCodeBtn" style="
     margin-right: 12px;
-    background-color: #8a1433;
+    background-color: #5b2b82;
     border: none;
     padding: 6px 14px;
     border-radius: 10px;
@@ -154,7 +186,7 @@
   </div>
 
   <script>
-  let countdown = 15;
+  let countdown = 60;
   const timerEl = document.getElementById("otpTimer");
   const expiredEl = document.getElementById("expiredMsg");
   const verifyBtn = document.getElementById("verifyBtn");
